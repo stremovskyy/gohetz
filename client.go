@@ -57,31 +57,6 @@ type Client struct {
 	userAgent          string
 }
 
-func (c *Client) GetAllServers() (*models.Servers, error) {
-
-	req, err := c.NewRequest(context.Background(), "GET", fmt.Sprintf("/servers/"), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	raw, err := c.Do(req, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	bodyBytes, err := ioutil.ReadAll(raw.Body)
-	if err != nil {
-		return nil, err
-	}
-
-	servers, err := models.UnmarshalServers(bodyBytes)
-	if err != nil {
-		return nil, err
-	}
-
-	return &servers, nil
-}
-
 // A ClientOption is used to configure a Client.
 type ClientOption func(*Client)
 

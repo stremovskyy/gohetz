@@ -18,10 +18,20 @@ func (r *Servers) Marshal() ([]byte, error) {
 }
 
 type Servers struct {
-	Servers []Server `json:"servers"`
+	Servers []ServerClass `json:"servers"`
+}
+
+func UnmarshalServer(data []byte) (Server, error) {
+	var r Server
+	err := json.Unmarshal(data, &r)
+	return r, err
 }
 
 type Server struct {
+	Server ServerClass `json:"server"`
+}
+
+type ServerClass struct {
 	BackupWindow    *string                `json:"backup_window"`    // Time window (UTC) in which the backup will run, or null if the backups are not enabled
 	Created         string                 `json:"created"`          // Point in time when the server was created (in ISO-8601 format)
 	Datacenter      Datacenter             `json:"datacenter"`       // Datacenter this server is located at

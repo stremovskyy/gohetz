@@ -22,14 +22,7 @@ type Actions struct {
 }
 
 type Action struct {
-	Command   string      `json:"command"`   // Command executed in the action
-	Error     *ErrorClass `json:"error"`     // Error message for the action if error occured, otherwise null.
-	Finished  *string     `json:"finished"`  // Point in time when the action was finished (in ISO-8601 format). Only set if the action; is finished otherwise null.
-	ID        float64     `json:"id"`        // ID of the action
-	Progress  float64     `json:"progress"`  // Progress of action in percent
-	Resources []Resource  `json:"resources"` // Resources the action relates to
-	Started   string      `json:"started"`   // Point in time when the action was started (in ISO-8601 format)
-	Status    Status      `json:"status"`    // Status of the action
+	Server ActionClass `json:"action"`
 }
 
 type ActionClass struct {

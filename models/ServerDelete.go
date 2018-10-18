@@ -7,16 +7,12 @@ package models
 
 import "encoding/json"
 
-func UnmarshalDeleteServer(data []byte) (DeleteServer, error) {
-	var r DeleteServer
+func UnmarshalServerDeleteResponse(data []byte) (ServerDeleteResponse, error) {
+	var r ServerDeleteResponse
 	err := json.Unmarshal(data, &r)
 	return r, err
 }
 
-func (r *DeleteServer) Marshal() ([]byte, error) {
-	return json.Marshal(r)
-}
-
-type DeleteServer struct {
-	Action Action `json:"action"`
+type ServerDeleteResponse struct {
+	Action ActionClass `json:"action"`
 }
